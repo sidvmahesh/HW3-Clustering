@@ -3,7 +3,7 @@ import pytest
 import cluster
 from cluster import Silhouette
 from cluster import KMeans
-from utils import make_clusters
+from cluster.utils import make_clusters
 from sklearn.metrics import silhouette_samples
 
 def test_kmeans():

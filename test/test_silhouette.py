@@ -3,6 +3,7 @@ import pytest
 import cluster
 from cluster import Silhouette
 from cluster import KMeans
+from cluster.utils import make_clusters
 from sklearn.metrics import silhouette_samples
 
 def test_silhouette_score():
