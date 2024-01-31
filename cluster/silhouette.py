@@ -24,3 +24,9 @@ class Silhouette:
             np.ndarray
                 a 1D array with the silhouette scores for each of the observations in `X`
         """
+        silhouette_scores = np.zeros(X.shape[0])
+        for obs in range(silhouette_scores.shape[0]):
+            points_of_same_cluster = X[i for i in range(y.shape[0]) if (y[i] == y[obs] and i != obs)]
+            a = np.mean(np.sqrt(np.sum(np.square(points_of_same_cluster - X[obs])), axis = 1))
+            
+            silhouette_scores[obs] = 

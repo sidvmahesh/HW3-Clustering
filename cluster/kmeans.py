@@ -20,6 +20,11 @@ class KMeans:
             max_iter: int
                 the maximum number of iterations before quitting model fit
         """
+        self.k = k
+        self.tol = tol
+        self.max_iter = max_iter
+        self.centroids = 0
+        self.centroid_distances = 0
 
     def fit(self, mat: np.ndarray):
         """
@@ -36,6 +41,24 @@ class KMeans:
             mat: np.ndarray
                 A 2D matrix where the rows are observations and columns are features
         """
+        num_iters = 0
+        centroids = mat[np.random.choice(mat.shape[0], size=k, replace=False)]
+        if self.centroid_distances == 0:
+            self.centroid_distances = np.zeros(mat.shape[0], k)
+        #centroids = np.random.rand(self.k, mat.shape[1])
+        cluster_membership = np.zeros(mat.shape[0])
+        while (self.max_iter > num_iters):
+            for obs in range(distances.shape[0]):
+                centroid_distances = np.zeros(k)
+                for k in range(centroids.shape[0]):
+                    centroid_distances[k] = np.sqrt(np.sum(np.square(mat[obs] - centroids[k])))
+                cluster_membership[obs] = np.argmin(centroid_distances)
+                self.centroid_distances[obs] = centroid_distances
+            # Now, re-calculate centroid locations
+            for k in range(centroids.shape[0]):
+                centroids[k] = np.mean(mat[i for i in cluster_membership if i == k], axis = 0)
+            num_iters += 1
+        self.centroids = centroids
 
     def predict(self, mat: np.ndarray) -> np.ndarray:
         """
@@ -53,6 +76,14 @@ class KMeans:
             np.ndarray
                 a 1D array with the cluster label for each of the observations in `mat`
         """
+        cluster_membership = np.zeros(mat.shape[0])
+        for obs in range(distances.shape[0]):
+            centroid_distances = np.zeros(k)
+            for k in range(centroids.shape[0]):
+                centroid_distances[k] = np.sqrt(np.sum(np.square(mat[obs] - centroids[k])))
+            cluster_membership[obs] = np.argmin(centroid_distances)
+        return cluster_membership
+
 
     def get_error(self) -> float:
         """
@@ -63,6 +94,10 @@ class KMeans:
             float
                 the squared-mean error of the fit model
         """
+        squared_diffs = np.square(self.centroid_distances)
+        closest_centroids = np.argmin(squared_diffs, axis=1)
+        return np.sum(closest_centroids)
+
 
     def get_centroids(self) -> np.ndarray:
         """
@@ -72,3 +107,4 @@ class KMeans:
             np.ndarray
                 a `k x m` 2D matrix representing the cluster centroids of the fit model
         """
+        return self.centroids
