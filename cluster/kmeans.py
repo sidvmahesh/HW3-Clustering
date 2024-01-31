@@ -52,7 +52,8 @@ class KMeans:
             for obs in range(self.centroid_distances.shape[0]):
                 centroid_distances = np.zeros(k)
                 for k in range(centroids.shape[0]):
-                    centroid_distances[k] = np.sqrt(np.sum(np.square(mat[obs] - centroids[k])))
+                    centroid_distances[k] = cdist(mat[obs] - centroids[k])
+                    #centroid_distances[k] = np.sqrt(np.sum(np.square(mat[obs] - centroids[k])))
                 cluster_membership[obs] = np.argmin(centroid_distances)
                 self.centroid_distances[obs] = centroid_distances
             # Now, re-calculate centroid locations
