@@ -49,7 +49,7 @@ class KMeans:
         #centroids = np.random.rand(self.k, mat.shape[1])
         cluster_membership = np.zeros(mat.shape[0])
         while (self.max_iter > num_iters):
-            for obs in range(distances.shape[0]):
+            for obs in range(self.centroid_distances.shape[0]):
                 centroid_distances = np.zeros(k)
                 for k in range(centroids.shape[0]):
                     centroid_distances[k] = np.sqrt(np.sum(np.square(mat[obs] - centroids[k])))
