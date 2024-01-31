@@ -42,7 +42,7 @@ class KMeans:
                 A 2D matrix where the rows are observations and columns are features
         """
         num_iters = 0
-        centroids = mat[np.random.choice(mat.shape[0], size=k, replace=False)]
+        centroids = mat[np.random.choice(mat.shape[0], size=self.k, replace=False)]
         if self.centroid_distances == 0:
             self.centroid_distances = np.zeros(mat.shape[0], k)
         #centroids = np.random.rand(self.k, mat.shape[1])
