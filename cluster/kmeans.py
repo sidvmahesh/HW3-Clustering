@@ -45,7 +45,7 @@ class KMeans:
         centroids = mat[np.random.choice(mat.shape[0], size=self.k, replace=False)]
         k = self.k
         if self.centroid_distances == 0:
-            self.centroid_distances = np.zeros(mat.shape[0], k)
+            self.centroid_distances = np.zeros([mat.shape[0], k])
         #centroids = np.random.rand(self.k, mat.shape[1])
         cluster_membership = np.zeros(mat.shape[0])
         while (self.max_iter > num_iters):
