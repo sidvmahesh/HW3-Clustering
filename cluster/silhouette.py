@@ -26,7 +26,13 @@ class Silhouette:
         """
         silhouette_scores = np.zeros(X.shape[0])
         for obs in range(silhouette_scores.shape[0]):
-            points_of_same_cluster = X[i for i in range(y.shape[0]) if (y[i] == y[obs] and i != obs)]
+            points_of_same_cluster = X[[i for i in range(y.shape[0]) if (y[i] == y[obs] and i != obs)]]
             a = np.mean(np.sqrt(np.sum(np.square(points_of_same_cluster - X[obs])), axis = 1))
-            
-            silhouette_scores[obs] = 
+            cluster_distances = []
+            unique_clusters = [i for i in np.unique(y) if i != y[obs]]
+            for other_cluster in unique_clusters:
+                points_of_other_cluster = X[[i for i in range(y.shape[0]) if y[i] == other_cluster]]
+                cluster_distances.append(np.mean(np.sqrt(np.sum(np.square(points_of_other_cluster - X[obs])), axis = 1)))
+            b = np.min(cluster_distances)
+            silhouette_scores[obs] = (b - a) / (max(b, a))
+        return silhouette_scores

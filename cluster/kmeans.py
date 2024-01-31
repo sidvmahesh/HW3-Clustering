@@ -56,7 +56,7 @@ class KMeans:
                 self.centroid_distances[obs] = centroid_distances
             # Now, re-calculate centroid locations
             for k in range(centroids.shape[0]):
-                centroids[k] = np.mean(mat[i for i in cluster_membership if i == k], axis = 0)
+                centroids[k] = np.mean(mat[[i for i in cluster_membership if i == k]], axis = 0)
             num_iters += 1
         self.centroids = centroids
 
