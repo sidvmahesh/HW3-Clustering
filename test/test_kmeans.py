@@ -12,3 +12,4 @@ def test_kmeans():
     cluster_membership = km.predict(X)
     scores = Silhouette.score(X, labels)
     assert ground_truth == scores
+    
