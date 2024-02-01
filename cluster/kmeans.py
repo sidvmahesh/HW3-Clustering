@@ -61,7 +61,7 @@ class KMeans:
                 centroids[k_centroid] = np.mean(mat[np.argwhere(cluster_membership == k_centroid)], axis = 0)
             # Finally, check if the clustering has converged
             # However, if this is the first iteration, we can skip this check
-            if self.centroids != 0:
+            if type(self.centroids) != int:
                 cumulative_error = 0
                 for i in range(len(centroids)):
                     cumulative_error = cumulative_error + cdist([centroids[i]], [self.centroids[i]])[0][0]
