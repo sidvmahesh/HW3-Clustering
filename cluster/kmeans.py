@@ -88,7 +88,7 @@ class KMeans:
             centroid_distances = np.zeros(self.k)
             #for k in range(self.centroids.shape[0]):
             #centroid_distances[k] = np.sqrt(np.sum(np.square(mat[obs] - centroids[k])))
-            centroid_distances = cdist(np.reshape(mat[obs], (1, mat.shape[0])), centroids)
+            centroid_distances = cdist(np.reshape(mat[obs], (1, mat.shape[1])), centroids)
             cluster_membership[obs] = np.argmin(centroid_distances)
         return cluster_membership
 
