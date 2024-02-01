@@ -8,7 +8,7 @@ from sklearn.metrics import silhouette_samples
 
 def test_kmeans():
     X, labels = make_clusters(n=1000, m=20, k=3)
-    km = KMeans(k=3)
+    km = KMeans(k=3, tol = 1e-6, max_iter = 400)
     km.fit(X)
     cluster_membership = km.predict(X)
     scores = Silhouette.score(X, labels)
