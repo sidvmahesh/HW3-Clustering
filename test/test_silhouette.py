@@ -10,6 +10,8 @@ def test_silhouette_score():
     X, labels = make_clusters(n=1000, m=20, k=3)
     ground_truth = silhouette_samples(X, labels)
     scores = Silhouette().score(X, labels)
+    print("ground_truth: ", ground_truth)
+    print("scores: ", scores)
     assert ground_truth == scores
 
     
