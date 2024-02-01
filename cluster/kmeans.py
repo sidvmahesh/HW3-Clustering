@@ -51,20 +51,19 @@ class KMeans:
         cluster_membership = np.zeros(mat.shape[0])
         print("cluster_membership: ", cluster_membership.shape)
         print("self.centroid_distances: ", self.centroid_distances.shape)
-        while (self.max_iter > num_iters):
+        for num_iter in range(self.max_iter)
             for obs in range(self.centroid_distances.shape[0]):
                 #centroid_distances = np.zeros(k)
                 #for k in range(centroids.shape[0]):
                 #    centroid_distances[k] = cdist(mat[obs], centroids[k])
                 print("mat[obs]: ", mat[obs].shape)
-                centroid_distances = cdist(np.reshape(mat[obs], (1, 20)), centroids)
+                centroid_distances = cdist(np.reshape(mat[obs], (1, mat.shape[0])), centroids)
                 cluster_membership[obs] = np.argmin(centroid_distances)
                 self.centroid_distances[obs] = centroid_distances
             # Now, re-calculate centroid locations
             for k_centroid in range(centroids.shape[0]):
                 #centroids[k_centroid] = np.mean(mat[[i for i in cluster_membership if i == k_centroid]], axis = 0)
                 centroids[k_centroid] = np.mean(mat[np.argwhere(cluster_membership == k_centroid)], axis = 0)
-            num_iters = num_iters + 1
             self.centroids = centroids
             print("num_iters: ", num_iters)
 
@@ -88,8 +87,9 @@ class KMeans:
         cluster_membership = np.zeros(mat.shape[0])
         for obs in range(self.centroid_distances.shape[0]):
             centroid_distances = np.zeros(self.k)
-            for k in range(self.centroids.shape[0]):
-                centroid_distances[k] = np.sqrt(np.sum(np.square(mat[obs] - centroids[k])))
+            #for k in range(self.centroids.shape[0]):
+            #centroid_distances[k] = np.sqrt(np.sum(np.square(mat[obs] - centroids[k])))
+            centroid_distances = cdist(np.reshape(mat[obs], (1, mat.shape[0])), centroids)
             cluster_membership[obs] = np.argmin(centroid_distances)
         return cluster_membership
 
