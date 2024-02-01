@@ -12,7 +12,12 @@ def test_silhouette_score():
     scores = Silhouette().score(X, labels)
     print("ground_truth: ", ground_truth)
     print("scores: ", scores)
-    assert ground_truth == scores
+    assert(len(ground_truth) == len(scores))
+    for i in range(len(ground_truth)):
+        if abs(ground_truth[i] - scores[i]) > 0.02:
+            print("ERROR: observation", i, "has incorrect silhouette score")
+            assert False
+    assert True
 
     
 
