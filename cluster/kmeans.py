@@ -62,7 +62,7 @@ class KMeans:
             # Finally, check if the clustering has converged
             cumulative_error = 0
             for i in range(centroids.shape[0]):
-                cumulative_error += cdist(np.reshape(centroids[i], (1, centroids.shape[1])), np.reshape(self.centroids[i], (1, self.centroids.shape[1])))
+                cumulative_error += cdist(np.reshape(centroids[i], (1, centroids.shape[0])), np.reshape(self.centroids[i], (1, self.centroids.shape[0])))
             if cumulative_error < self.tol:
                 break # Early convergence
             self.centroids = centroids
