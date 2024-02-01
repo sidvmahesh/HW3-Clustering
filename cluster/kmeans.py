@@ -64,7 +64,7 @@ class KMeans:
                 #centroids[k_centroid] = np.mean(mat[[i for i in cluster_membership if i == k_centroid]], axis = 0)
                 centroids[k_centroid] = np.mean(mat[np.argwhere(cluster_membership == k_centroid)], axis = 0)
             self.centroids = centroids
-            print("num_iter: ", num_iter)
+            #print("num_iter: ", num_iter)
 
     def predict(self, mat: np.ndarray) -> np.ndarray:
         """

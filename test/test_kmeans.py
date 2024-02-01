@@ -12,5 +12,5 @@ def test_kmeans():
     km.fit(X)
     cluster_membership = km.predict(X)
     ari = adjusted_rand_score(labels, cluster_membership)
-    print(ari)
+    print("ARI: ", ari)
     assert ari > 0.8
