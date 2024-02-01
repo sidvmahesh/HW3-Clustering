@@ -41,7 +41,6 @@ class KMeans:
             mat: np.ndarray
                 A 2D matrix where the rows are observations and columns are features
         """
-        num_iters = 0
         centroids = mat[np.random.choice(mat.shape[0], size=self.k, replace=False)]
         print("centroids: ", centroids.shape)
         k = self.k
@@ -51,7 +50,7 @@ class KMeans:
         cluster_membership = np.zeros(mat.shape[0])
         print("cluster_membership: ", cluster_membership.shape)
         print("self.centroid_distances: ", self.centroid_distances.shape)
-        for num_iter in range(self.max_iter)
+        for num_iter in range(self.max_iter):
             for obs in range(self.centroid_distances.shape[0]):
                 #centroid_distances = np.zeros(k)
                 #for k in range(centroids.shape[0]):
