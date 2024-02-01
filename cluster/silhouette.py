@@ -35,6 +35,6 @@ class Silhouette:
                 points_of_other_cluster = X[[i for i in range(y.shape[0]) if y[i] == other_cluster]]
                 #cluster_distances.append(np.mean(np.sqrt(np.sum(np.square(points_of_other_cluster - X[obs])), axis = 1)))
                 cluster_distances.append(cdist(np.reshape(X[obs], (1, X.shape[1])), points_of_other_cluster))
-            b = np.min(cluster_distances)
+            b = min(cluster_distances)
             silhouette_scores[obs] = (b - a) / (max(b, a))
         return silhouette_scores
