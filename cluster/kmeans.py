@@ -63,7 +63,7 @@ class KMeans:
             cumulative_error = 0
             for i in range(len(centroids)):
                 print(centroids[i])
-                print(self.centroids[i])
+                print(self.centroids)
                 cumulative_error = cumulative_error + cdist([centroids[i]], [self.centroids[i]])[0][0]
             if cumulative_error < self.tol:
                 break # Early convergence
