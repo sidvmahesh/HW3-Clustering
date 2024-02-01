@@ -65,7 +65,8 @@ class KMeans:
                 #centroids[k_centroid] = np.mean(mat[[i for i in cluster_membership if i == k_centroid]], axis = 0)
                 centroids[k_centroid] = np.mean(mat[np.argwhere(cluster_membership == k_centroid)], axis = 0)
             num_iters = num_iters + 1
-        self.centroids = centroids
+            self.centroids = centroids
+            print("num_iters: ", num_iters)
 
     def predict(self, mat: np.ndarray) -> np.ndarray:
         """
@@ -83,10 +84,11 @@ class KMeans:
             np.ndarray
                 a 1D array with the cluster label for each of the observations in `mat`
         """
+        print("self.centroids: ", self.centroids.shape)
         cluster_membership = np.zeros(mat.shape[0])
         for obs in range(self.centroid_distances.shape[0]):
             centroid_distances = np.zeros(self.k)
-            for k in range(centroids.shape[0]):
+            for k in range(self.centroids.shape[0]):
                 centroid_distances[k] = np.sqrt(np.sum(np.square(mat[obs] - centroids[k])))
             cluster_membership[obs] = np.argmin(centroid_distances)
         return cluster_membership
