@@ -61,8 +61,8 @@ class KMeans:
                 centroids[k_centroid] = np.mean(mat[np.argwhere(cluster_membership == k_centroid)], axis = 0)
             # Finally, check if the clustering has converged
             cumulative_error = 0
-            for i in range(centroids.shape[0]):
-                cumulative_error += cdist(np.reshape(centroids[i], (1, len(centroids[i]))), np.reshape(self.centroids[i], (1, len(self.centroids))))
+            for i in range(len(centroids)):
+                cumulative_error += cdist(np.reshape(centroids[i], (1, len(centroids[i]))), np.reshape(self.centroids[i], (1, len(self.centroids[i]))))
             if cumulative_error < self.tol:
                 break # Early convergence
             self.centroids = centroids
