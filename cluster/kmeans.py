@@ -61,8 +61,9 @@ class KMeans:
                 cluster_membership[obs] = np.argmin(centroid_distances)
                 self.centroid_distances[obs] = centroid_distances
             # Now, re-calculate centroid locations
-            for k in range(centroids.shape[0]):
-                centroids[k] = np.mean(mat[[i for i in cluster_membership if i == k]], axis = 0)
+            for k_centroid in range(centroids.shape[0]):
+                #centroids[k_centroid] = np.mean(mat[[i for i in cluster_membership if i == k_centroid]], axis = 0)
+                centroids[k_centroid] = np.mean(mat[np.argwhere(cluster_membership == k_centroid)], axis = 0)
             num_iters += 1
         self.centroids = centroids
 
